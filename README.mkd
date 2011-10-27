@@ -8,6 +8,11 @@ Usage:
 
     :PluginsUpdate
 
+Screenshot:
+-----------
+
+![](http://mattn.github.com/plugins-update-vim/images/screenshot.png)
+
 Requirements:
 -------------
 
