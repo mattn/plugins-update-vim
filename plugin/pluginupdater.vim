@@ -16,17 +16,18 @@ function! s:PluginsUpdate()
   silent new __PLUGINS_UPDATE__
   setlocal buftype=nofile
   redraw
-  let vcs = {
-  \"git": { "meta": ".git", "cmd": "git", "update": ["git pull"] },
-  \"hg" : { "meta": ".hg",  "cmd": "hg",  "update": ["hg pull", "hg update"] },
-  \"svn": { "meta": ".svn", "cmd": "svn", "update": ["svn update"] },
-  }
+  let vcs = [
+  \ {"meta": ".git", "cmd": "git", "update": ["git pull"]            },
+  \ {"meta": ".hg",  "cmd": "hg",  "update": ["hg pull", "hg update"]},
+  \ {"meta": ".svn", "cmd": "svn", "update": ["svn update"]          },
+  \]
   for path in map(split(&rtp, ','), 'expand(v:val, ":p")')
-    for v in keys(vcs)
+    for v in vcs
       if executable(v.cmd) && isdirectory(printf("%s/%s", path, v.meta))
         call s:vcsUpdate(path, v.update)
         break
-	endif
+      endif
+    endfor
   endfor
 endfunction
 
