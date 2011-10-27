@@ -16,7 +16,7 @@ function! s:PluginsUpdate()
   silent new __PLUGINS_UPDATE__
   setlocal buftype=nofile
   redraw
-  for rtp in map(split(&rtp, ','), 'expand(v:val, ":p")')
+  for path in map(split(&rtp, ','), 'expand(v:val, ":p")')
     if isdirectory(printf("%s/.git", path))
       call s:vcsUpdate(path, ["git pull"])
     elseif isdirectory(printf("%s/.hg", path))
