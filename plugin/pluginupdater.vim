@@ -17,7 +17,7 @@ function! s:PluginsUpdate()
   setlocal buftype=nofile
   redraw
   let vcs = [
-  \ {"meta": ".git", "cmd": "git", "update": ["git pull"]            },
+  \ {"meta": ".git", "cmd": "git", "update": ["git pull --rebase"]   },
   \ {"meta": ".hg",  "cmd": "hg",  "update": ["hg pull", "hg update"]},
   \ {"meta": ".svn", "cmd": "svn", "update": ["svn update"]          },
   \]
