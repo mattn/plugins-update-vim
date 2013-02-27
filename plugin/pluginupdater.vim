@@ -38,6 +38,9 @@ function! s:PluginsUpdate()
   \ {"meta": ".hg",  "cmd": "hg",  "update": ["hg pull", "hg update"]                                     },
   \ {"meta": ".svn", "cmd": "svn", "update": ["svn update"]                                               },
   \]
+  if exists('*Unbundle')
+    call Unbundle('ftbundle/*/*')
+  endif
   for path in map(split(&rtp, ','), 'fnamemodify(v:val, ":p")')
     for v in vcs
       if executable(v.cmd) && isdirectory(printf("%s/%s", path, v.meta))
