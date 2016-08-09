@@ -45,7 +45,7 @@ function! s:PluginsUpdate()
     for v in vcs
       if executable(v.cmd) && isdirectory(printf("%s/%s", path, v.meta))
         if has_key(v, 'check')
-          if !s:isUpdatableGit(path)
+          if !v.check(path)
             break
           endif
         endif
